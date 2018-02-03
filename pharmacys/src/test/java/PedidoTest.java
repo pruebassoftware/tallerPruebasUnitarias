@@ -147,7 +147,53 @@ public class PedidoTest {
     
     }
     
-
+@Test  
+    public void testIntegracionValidarPago() throws ParseException {
+        Double total = 0.0;
+        System.out.println("----Test 4----");       
+        //Ingresa el cliente que va realizar la transaccion
+        Cliente cliente=new Cliente("Juan", 1);
+        System.out.println(cliente.getInformacionCliente());
+        //Selecciona los productos del catalogo y los arregla al carrito
+        Producto p1 = obtenerProductoCatalogo(catalogo,"Analgan");
+        Producto p2 = obtenerProductoCatalogo(catalogo,"Buscapina");
+        DetallePedido detalle1 = new DetallePedido(p1,1);
+        DetallePedido detalle2 = new DetallePedido(p2,1);
+        carrito.add(detalle1);
+        carrito.add(detalle2);
+        //Da click en el carrito para pagar
+        //Se obtiene la hora de la venta
+        SimpleDateFormat sdfejemplo = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        String stringfecha = "02-02-2018 22:00:00";
+        Date fecha = sdfejemplo.parse(stringfecha);
+        //Se crea el pedido
+        Pedido pedido = new Pedido(carrito,fecha,cliente);
+        
+        //Se crea el pago
+        Pago metodoPago = new Pago();
+        metodoPago.crearPago(false);
+        TarjetaCredito tarjeta = new TarjetaCredito(2,"1234","012");
+        metodoPago.asociarTarjeta(tarjeta);
+        
+        //visualizar el pedido con los productos seleccionados.
+        System.out.println(carrito.toString());
+        Double recargo = pedido.getRecargo(cliente, carrito.size());
+        Double subtotal = pedido.getSubTotalPedido();
+        total = subtotal + recargo;
+        System.out.println("Valor del recargo = " + recargo);
+        System.out.println("Subtotal=" + subtotal );
+        System.out.println("Total=" + total);
+        
+        System.out.println("#####");
+        assertEquals("Tarjeta invalida", metodoPago.validarPago());//experado,obtenido
+        System.out.println("#####");
+        
+//        TarjetaCredito tarjeta = new TarjetaCredito(2,"510510510510511","012");
+//        metodoPago.asociarTarjeta(tarjeta);
+//        System.out.println(tarjeta.validarTarjeta());
+        
+    
+    }
     
 }
     
