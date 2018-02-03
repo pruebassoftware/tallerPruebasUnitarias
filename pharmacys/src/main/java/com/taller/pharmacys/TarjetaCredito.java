@@ -56,7 +56,7 @@ public class TarjetaCredito {
         switch (tipo) {
              case 1:
                 if (this.numero.matches(REGEX_DINERS)){
-                    return 1;
+                    return 0;
                 }
              case 2:
                  if (this.numero.matches(REGEX_MASTERCARD)){

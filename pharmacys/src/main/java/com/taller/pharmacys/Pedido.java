@@ -87,6 +87,16 @@ public class Pedido {
     public String ToStringTotal(){
         return "Se completo su pedido";
     }
+    
+    //Funcion que valida pedido
+    public boolean confirmarPedido(Pedido pedido){
+        boolean existePedido = false;
+        if(pedido!=null){
+            existePedido = true;
+        }
+        return existePedido;
+    }
+            
      
      
 }
