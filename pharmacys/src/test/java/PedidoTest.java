@@ -87,7 +87,6 @@ public class PedidoTest {
         
         assertEquals("Se creo el producto exitosamente!", resultado); //experado,obtenido
         
-        System.out.println("----Test 1----\n"); 
     }
     
     @Test  
@@ -99,8 +98,7 @@ public class PedidoTest {
         //visualizar el pedido con los productos seleccionados.
         System.out.println("*******Carrito*****");
         System.out.println(carrito.toString());
-        assertEquals(1, carrito.size()); //experado,obtenido
-        System.out.println("----Test 2----\n"); 
+        assertEquals(1, carrito.size()); //experado,obtenido 
     }
     
     @Test  
